@@ -63,6 +63,9 @@ func (s *Service) Evaluate(
 		}
 		probes := make([]domain.Probe, 0, len(state.Probes))
 		for _, probe := range state.Probes {
+			if probe.PlanID != planID {
+				continue
+			}
 			probes = append(probes, probe)
 		}
 		probes = domain.SelectAssessmentProbes(probes)
